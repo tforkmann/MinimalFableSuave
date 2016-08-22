@@ -1,0 +1,25 @@
+{
+  "name": "minimal-fable-suave",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "fable ./code/WebSite/MinimalFableSuave.WebSite.fsproj -s -o ../release -m commonjs --verbose",
+    "watch": "fable -w --target watch"
+  },
+  "dependencies": {
+    "core-js": "^2.4.0",
+    "fable-core": "^0.5.4",
+    "todomvc-app-css": "^2.0.0",
+    "todomvc-common": "^1.0.1",
+    "virtual-dom": "^2.1.1"
+  },
+  "devDependencies": {
+    "fable-compiler": "^0.5.3",
+    "fable-import-virtualdom": "^0.6.7",
+    "source-map-loader": "^0.1.5",
+    "webpack": "^1.13.1"
+  },
+  "engines": {
+    "fable": "^0.5.3"
+  }
+}

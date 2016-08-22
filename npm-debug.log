@@ -1,0 +1,40 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\CODE\\MinimalFableSuave\\packages\\Node.js\\node.exe',
+1 verbose cli   'c:\\CODE\\MinimalFableSuave\\packages\\Npm.js\\tools\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'build' ]
+2 info using npm@2.13.1
+3 info using node@v5.3.0
+4 verbose run-script [ 'prebuild', 'build', 'postbuild' ]
+5 info prebuild minimal-fable-suave@1.0.0
+6 info build minimal-fable-suave@1.0.0
+7 verbose unsafe-perm in lifecycle true
+8 info minimal-fable-suave@1.0.0 Failed to exec build script
+9 verbose stack Error: minimal-fable-suave@1.0.0 build: `fable ./code/WebSite/MinimalFableSuave.WebSite.fsproj -s -o ../release -m commonjs --verbose`
+9 verbose stack Exit status 1
+9 verbose stack     at EventEmitter.<anonymous> (c:\CODE\MinimalFableSuave\packages\Npm.js\tools\node_modules\npm\lib\utils\lifecycle.js:214:16)
+9 verbose stack     at emitTwo (events.js:87:13)
+9 verbose stack     at EventEmitter.emit (events.js:172:7)
+9 verbose stack     at ChildProcess.<anonymous> (c:\CODE\MinimalFableSuave\packages\Npm.js\tools\node_modules\npm\lib\utils\spawn.js:24:14)
+9 verbose stack     at emitTwo (events.js:87:13)
+9 verbose stack     at ChildProcess.emit (events.js:172:7)
+9 verbose stack     at maybeClose (internal/child_process.js:818:16)
+9 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+10 verbose pkgid minimal-fable-suave@1.0.0
+11 verbose cwd c:\CODE\MinimalFableSuave
+12 error Windows_NT 6.1.7601
+13 error argv "c:\\CODE\\MinimalFableSuave\\packages\\Node.js\\node.exe" "c:\\CODE\\MinimalFableSuave\\packages\\Npm.js\\tools\\node_modules\\npm\\bin\\npm-cli.js" "run" "build"
+14 error node v5.3.0
+15 error npm  v2.13.1
+16 error code ELIFECYCLE
+17 error minimal-fable-suave@1.0.0 build: `fable ./code/WebSite/MinimalFableSuave.WebSite.fsproj -s -o ../release -m commonjs --verbose`
+17 error Exit status 1
+18 error Failed at the minimal-fable-suave@1.0.0 build script 'fable ./code/WebSite/MinimalFableSuave.WebSite.fsproj -s -o ../release -m commonjs --verbose'.
+18 error This is most likely a problem with the minimal-fable-suave package,
+18 error not with npm itself.
+18 error Tell the author that this fails on your system:
+18 error     fable ./code/WebSite/MinimalFableSuave.WebSite.fsproj -s -o ../release -m commonjs --verbose
+18 error You can get their info via:
+18 error     npm owner ls minimal-fable-suave
+18 error There is likely additional logging output above.
+19 verbose exit [ 1, true ]

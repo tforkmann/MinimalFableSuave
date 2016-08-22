@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9A7BAAD4-062F-45E3-8C59-5DD14337AE36}"
+	ProjectSection(SolutionItems) = preProject
+		build.fsx = build.fsx
+		paket.dependencies = paket.dependencies
+		paket.lock = paket.lock
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MinimalFableSuave.WebSite", "code\WebSite\MinimalFableSuave.WebSite.fsproj", "{767A05D0-6A54-4486-88BB-9282E72EEC8F}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MinimalFableSuave.Service", "code\MinimalFableSuave.Service\MinimalFableSuave.Service.fsproj", "{378F8659-D65E-4C65-965A-BBB7C8E36514}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		NoDB|Any CPU = NoDB|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{767A05D0-6A54-4486-88BB-9282E72EEC8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{767A05D0-6A54-4486-88BB-9282E72EEC8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{767A05D0-6A54-4486-88BB-9282E72EEC8F}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU
+		{767A05D0-6A54-4486-88BB-9282E72EEC8F}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
+		{767A05D0-6A54-4486-88BB-9282E72EEC8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{767A05D0-6A54-4486-88BB-9282E72EEC8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{378F8659-D65E-4C65-965A-BBB7C8E36514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{378F8659-D65E-4C65-965A-BBB7C8E36514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{378F8659-D65E-4C65-965A-BBB7C8E36514}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU
+		{378F8659-D65E-4C65-965A-BBB7C8E36514}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
+		{378F8659-D65E-4C65-965A-BBB7C8E36514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{378F8659-D65E-4C65-965A-BBB7C8E36514}.Release|Any CPU.Build.0 = Release|Any CPU
+		{378F8659-D65E-4C65-965A-BBB7C8E36514}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

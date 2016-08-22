@@ -1,0 +1,29 @@
+source https://nuget.org/api/v2
+nuget excelprovider
+nuget FAKE
+nuget FSharp.Configuration
+nuget FSharp.Data.TypeProviders
+nuget Google.DataTable.Net.Wrapper
+nuget Logary
+nuget Logary.Adapters.Suave
+nuget netoffice.excel
+nuget node.js
+nuget pdfsharp
+nuget SqlProvider
+nuget Suave 
+nuget Suave.DotLiquid
+nuget FSharp.Data
+nuget FSharp.Compiler.Service
+nuget DotLiquid
+nuget System.DirectoryServices.Linq
+nuget System.Xml.ReaderWriter
+nuget XPlot.GoogleCharts
+nuget XPlot.GoogleCharts.WPF
+nuget TopShelf.FSharp
+nuget FSharp.Core redirects:force
+nuget FSharp.Formatting	
+nuget Npm.js
+
+group Build
+
+group Test
