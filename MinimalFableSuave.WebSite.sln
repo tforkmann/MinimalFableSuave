@@ -11,9 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MinimalFableSuave.WebSite", "code\WebSite\MinimalFableSuave.WebSite.fsproj", "{767A05D0-6A54-4486-88BB-9282E72EEC8F}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MinimalFableSuave.FrontEnd", "code\FrontEnd\MinimalFableSuave.FrontEnd.fsproj", "{767A05D0-6A54-4486-88BB-9282E72EEC8F}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MinimalFableSuave.Service", "code\MinimalFableSuave.Service\MinimalFableSuave.Service.fsproj", "{378F8659-D65E-4C65-965A-BBB7C8E36514}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MinimalFableSuave.BackEnd", "code\BackEnd\MinimalFableSuave.BackEnd.fsproj", "{5C786BF8-99F0-4414-B3FF-01CD271D8211}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MinimalFableSuave.Service", "code\Service\MinimalFableSuave.Service.fsproj", "{378F8659-D65E-4C65-965A-BBB7C8E36514}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +30,12 @@ Global
 		{767A05D0-6A54-4486-88BB-9282E72EEC8F}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
 		{767A05D0-6A54-4486-88BB-9282E72EEC8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{767A05D0-6A54-4486-88BB-9282E72EEC8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C786BF8-99F0-4414-B3FF-01CD271D8211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C786BF8-99F0-4414-B3FF-01CD271D8211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C786BF8-99F0-4414-B3FF-01CD271D8211}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU
+		{5C786BF8-99F0-4414-B3FF-01CD271D8211}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
+		{5C786BF8-99F0-4414-B3FF-01CD271D8211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C786BF8-99F0-4414-B3FF-01CD271D8211}.Release|Any CPU.Build.0 = Release|Any CPU
 		{378F8659-D65E-4C65-965A-BBB7C8E36514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{378F8659-D65E-4C65-965A-BBB7C8E36514}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{378F8659-D65E-4C65-965A-BBB7C8E36514}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU

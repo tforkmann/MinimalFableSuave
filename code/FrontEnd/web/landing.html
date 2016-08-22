@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" /> 
+    {% block head %} 
+        <title>EnergyDashboard | Landing</title>
+    {% endblock %}
+    <!-- Standard scripts and stylesheet imports -->
+    <script src="/lib/jquery.js"></script>
+    <link href="/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/content/landingpage.css" rel="stylesheet"/>
+    <script src="/lib/bootstrap.min.js"></script>
+    <script src="/lib/jquerysearchable.min.js"></script>  
+    <script src="/content/search.js"></script>
+    <!-- Standard page design and scripts -->
+    <link href="/favicon.ico" rel="icon"/>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">EnergyDashboard</a>
+        </div>
+        <!-- /.navbar-header -->
+        <div class="navbar-collapse collapse" id="navbar">
+            <img src="./img/Danpower.png">
+            <img src="./img/ecg.png">
+            <img src="./img/EPL.png">
+            <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="/">
+                    <i class="fa fa-fw fa-tachometer"></i> Start
+                </a>
+            </li>
+            <li>
+                <a href="/login/">
+                    <i class="fa fa-fw fa-leaf"></i> Einloggen
+                </a>
+            </li>
+            <li>
+                <a href="/register/">
+                    <i class="fa fa-file fa-file-excel-o"></i> Registrieren
+                </a>
+            </li>
+            </ul>
+        <!-- /.navbar-header -->
+        </div>
+    </nav>
+     <!-- Full Width Image Header -->
+    <header class="header-image">
+        <div class="headline">
+            <div class="container">
+                <h1>EnergyDashboard</h1>
+                <h2>ReportingTool</h2>
+                <a href="/login/" class="btn btn-lg btn-success btn-block">Jetzt anmelden</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <hr class="featurette-divider">
+        <!-- First Featurette -->
+        <div class="featurette" id="about">
+            <img class="featurette-image img-responsive pull-right" height="500" width="500" src="/img/enmsdashboard.png">
+            <h2 class="featurette-heading">Überblick</h2>
+            <p class="lead">Das Energy-Dashboard das webbasierte Berichtswesen der Firmen Danpower GmbH, eCG Contracting GmbH und der Energieprojektgesellschaft Lagenhagen.
+                <br> Mit dem Energy-Dashboard mit integrierter Data-Warehouse-Technologie erhalten Sie Auswertungen der Kraftwerken, Biogasanlagen und Energiezentralen auf Knopfdruck und in Echtzeit.
+                <br> Mit wenigen Mausklicks können die energie- und buchhaltungsdaten
+                <br> der Anlagen, Standorte, Kostenstellen sowie deren EnPIs und KPIs ermittelt werden.</p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Second Featurette -->
+        <div class="featurette" id="services">
+            <img class="featurette-image img-responsive pull-left" height="500" width="500" src="/img/enmsarchitektur.png">
+            <h2 class="featurette-heading">Architektur</h2>
+            <p class="lead">Das Energy-Dashboard teilt sich in 3 Teile auf.
+                <br>1. Daten sammeln: Das Energy-Dashboard bezieht die Daten aus den Unterdatenbanken SAGE, RITA, EMD, ZEUS und dem Kraftwerke-Sharepoint.
+                <br>2. DataWarehouse: Die Daten werden in einer MSSQL-Datenbank (DatenWarehouse) gesammelt und zusammen agregiert. 
+                <br>3. Daten präsentieren: Anschließend werden ein die Daten
+                <br>mithilfe eines SQL-Providers mit der Programmiersprache F# ausgelesen. 
+                <br>Das Energy-Dashboard ist 100% HTML5-basiert und funktioniert mit jedem Browser, an jedem Ort und für jeden berechtigten Mitarbeiter. Das Energy-Dashboard verarbeitet, verdicht und strukturiert die Daten.</p>
+        </div>
+        
+        <hr class="featurette-divider">
+
+        <!-- Third Featurette -->       
+        <div class="featurette" id="functions">
+            <h2 class="featurette-heading">Funktionalitäten</h2>
+            <div class="col-lg-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-bar-chart fa-5x"></i>
+                                    Verbrauchskurve
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>   
+                <div class="col-lg-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-dashboard fa-5x"></i>
+                                    Benchmarking
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div> 
+                <div class="col-lg-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-bolt fa-5x"></i>
+                                    Forecast
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div> 
+                <div class="col-lg-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-bolt fa-5x"></i>
+                                    Zielverfolgung
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-bolt fa-5x"></i>
+                                    Maßnahmenverfolgung
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-bolt fa-5x"></i>
+                                    Verbrauchskurve
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div> 
+            </div>  
+        </div>
+    <!-- /.container -->
+</body>
+
+</html>

@@ -53,7 +53,7 @@ let rec runWebsite() =
     watcher.Renamed.Add(handleWatcherEvents)
 
     build()
-    let app = Path.Combine("bin",config,"EnMSDashboard.Service.exe")
+    let app = Path.Combine("bin",config,"MinimalFableSuave.Service.exe")
     let ok =
         execProcess (fun info ->
             info.FileName <- app
@@ -69,10 +69,6 @@ and handleWatcherEvents (e:IO.FileSystemEventArgs) =
         |> Seq.iter (fun p -> p.Kill())
 
     runWebsite()
-
-// Get IP Address and port no. from Config.Yaml
-//let getProgramsPath = Environment.SpecialFolder.Programs
-//let getConfigPath = Path.Combine (getProgramsPath, "\EnMS-Dahsboard\Config\config.yaml")
 
 type Config = YamlConfig<"\\config.yaml">
 
