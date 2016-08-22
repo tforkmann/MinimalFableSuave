@@ -20,10 +20,14 @@ let build() =
     |> ignore
 
 Target "deploy" (fun _ ->
-  let sourceDirectory = __SOURCE_DIRECTORY__ @@ "code/FrontEnd/Node_Modules"
-  let binDirectory = __SOURCE_DIRECTORY__ @@ "bin\Release\web\Node_Modules"
-  CleanDir binDirectory
-  CopyRecursive sourceDirectory binDirectory false |> ignore
+  let sourceDirectoryNodeModules = __SOURCE_DIRECTORY__ @@ "code/FrontEnd/node_modules"
+  let sourceDirectoryContent = __SOURCE_DIRECTORY__ @@ "code/FrontEnd/web/content"
+  let binDirectoryNodeModule = __SOURCE_DIRECTORY__ @@ "bin/Release/web/node_modules"
+  let binDirectoryContent = __SOURCE_DIRECTORY__ @@ "bin/Release/web/content"
+  CleanDir binDirectoryNodeModule
+  CleanDir binDirectoryContent
+  CopyRecursive sourceDirectoryNodeModules binDirectoryNodeModule false |> ignore
+  CopyRecursive sourceDirectoryContent binDirectoryContent false |> ignore
 )
 
 //let run cmd args dir =
