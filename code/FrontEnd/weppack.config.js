@@ -5,7 +5,7 @@ var cfg = {
   devtool: "source-map",
   entry: "./out/pages/fabletest.js",
   output: {
-    path: path.join(__dirname, "web/content"),
+    path: "./web/content",
     filename: "bundle.js"
   },
   module: {
