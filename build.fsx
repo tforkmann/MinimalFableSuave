@@ -19,25 +19,50 @@ let build() =
     |> MSBuild "" "Build" [ "Configuration", config ]
     |> ignore
 
-let run cmd args dir =
-    if execProcess( fun info ->
-        info.FileName <- cmd
-        if not( String.IsNullOrWhiteSpace dir) then
-            info.WorkingDirectory <- dir
-        info.Arguments <- args
-    ) System.TimeSpan.MaxValue = false then
-        traceError <| sprintf "Error while running '%s' with args: %s and workingDirectory: %s" cmd args __SOURCE_DIRECTORY__
+//let run cmd args dir =
+//    if execProcess( fun info ->
+//        info.FileName <- cmd
+//        if not( String.IsNullOrWhiteSpace dir) then
+//            info.WorkingDirectory <- dir
+//        info.Arguments <- args
+//    ) System.TimeSpan.MaxValue = false then
+//        traceError <| sprintf "Error while running '%s' with args: %s and workingDirectory: %s" cmd args __SOURCE_DIRECTORY__
+//
+//let platformTool tool path =
+//    isUnix |> function | true -> tool | _ -> path
+//
+//let npmTool =
+//    platformTool "npm" ("packages" </> "Npm.js" </> "tools"  </> "npm.cmd" |> FullName)
+//
+////Target "RunScript" (fun _ ->
+////    run npmTool "install" ""
+////    run npmTool "run build" ""
+////)
 
-let platformTool tool path =
-    isUnix |> function | true -> tool | _ -> path
+let npm command args workingDir =
+  let args = sprintf "%s %s" command (String.concat " " args)
+  let cmd, args = if EnvironmentHelper.isUnix then "npm", args else "cmd", ("/C npm " + args)
+  let ok =
+    execProcess (fun info ->
+      info.FileName <- cmd
+      info.WorkingDirectory <- workingDir
+      info.Arguments <- args) TimeSpan.MaxValue
+  if not ok then failwith (sprintf "'%s %s' task failed" cmd args)
 
-let npmTool =
-    platformTool "npm" ("packages" </> "Npm.js" </> "tools"  </> "npm.cmd" |> FullName)
+let node command args workingDir =
+  let args = sprintf "%s %s" command (String.concat " " args)
+  let cmd, args = if EnvironmentHelper.isUnix then "node", args else "cmd", ("/C node " + args)
+  async { 
+    execProcess (fun info ->
+      info.FileName <- cmd
+      info.WorkingDirectory <- workingDir
+      info.Arguments <- args) TimeSpan.MaxValue |> ignore } |> Async.Start
 
-Target "RunScript" (fun _ ->
-    run npmTool "install" ""
-    run npmTool "run build" ""
+Target "fable" (fun _ ->
+  __SOURCE_DIRECTORY__ </> "code" </> "FrontEnd" |> npm "install" []
+  __SOURCE_DIRECTORY__ </> "code" </> "FrontEnd" |> node "node_modules/fable-compiler" ["-w"]
 )
+
 
 Target "Build" (fun _ ->
     build()
@@ -96,7 +121,7 @@ Target "Deploy" DoNothing
 
 "Clean"
   ==> "Build"
-  ==> "RunScript"
+  ==> "Fable"
   ==> "Run"
   ==> "Default"
 

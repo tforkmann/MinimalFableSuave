@@ -16,7 +16,6 @@
 4 verbose stack     at Module.load (module.js:344:32)
 4 verbose stack     at Function.Module._load (module.js:301:12)
 4 verbose stack     at Module.require (module.js:354:17)
-4 verbose stack     at require (internal/module.js:12:17)
 5 verbose cwd c:\Users\tforkmann\Documents\1_Programming\1_test\MinimalFableSuave
 6 error Windows_NT 6.1.7601
 7 error argv "c:\\Users\\tforkmann\\Documents\\1_Programming\\1_test\\MinimalFableSuave\\packages\\Node.js\\node.exe" "c:\\Users\\tforkmann\\Documents\\1_Programming\\1_test\\MinimalFableSuave\\packages\\Npm.js\\tools\\node_modules\\npm\\bin\\npm-cli.js" "run" "build"

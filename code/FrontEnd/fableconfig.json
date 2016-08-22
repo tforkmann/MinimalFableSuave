@@ -1,7 +1,7 @@
 {
     "module": "amd",
     "sourceMaps": true,
-    "projFile": "./code/WebSite/MinimalFableSuave.WebSite.fsproj",
+    "projFile": "./MinimalFableSuave.FrontEnd.fsproj",
     "outDir": "out",
     "scripts": {
         "prebuild": "npm install",

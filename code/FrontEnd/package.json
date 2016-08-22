@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "fable ./code/FrontEnd/MinimalFableSuave.FrontEnd.fsproj -s -o ../release -m commonjs --verbose",
+    "build": "fable ./MinimalFableSuave.FrontEnd.fsproj -s -o ../release -m commonjs --verbose",
     "watch": "fable -w --target watch"
   },
   "dependencies": {
