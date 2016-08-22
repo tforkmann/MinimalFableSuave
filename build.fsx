@@ -19,6 +19,13 @@ let build() =
     |> MSBuild "" "Build" [ "Configuration", config ]
     |> ignore
 
+Target "deploy" (fun _ ->
+  let sourceDirectory = __SOURCE_DIRECTORY__ @@ "code/FrontEnd/Node_Modules"
+  let binDirectory = __SOURCE_DIRECTORY__ @@ "bin\Release\web\Node_Modules"
+  CleanDir binDirectory
+  CopyRecursive sourceDirectory binDirectory false |> ignore
+)
+
 //let run cmd args dir =
 //    if execProcess( fun info ->
 //        info.FileName <- cmd
@@ -117,11 +124,11 @@ Target "Run" (fun _ ->
 
 Target "Default" DoNothing
 
-Target "Deploy" DoNothing
 
 "Clean"
   ==> "Build"
   ==> "Fable"
+  ==> "Deploy"
   ==> "Run"
   ==> "Default"
 
