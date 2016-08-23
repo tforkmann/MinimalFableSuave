@@ -106,14 +106,18 @@ and handleWatcherEvents (e:IO.FileSystemEventArgs) =
 
     runWebsite()
 
-type Config = YamlConfig<"\\config.yaml">
+// type Config = YamlConfig<"\\config.yaml">
 
-let configFile = Config ()
+// let configFile = Config ()
 
-let ipAddress = configFile.Suave.Http.IP
-let port = configFile.Suave.Http.Port
+// let ipAddress = configFile.Suave.Http.IP
+// let port = configFile.Suave.Http.Port
 
-let newConfigFile = configFile.Load("C:\RunTimeConfig.yaml")
+// let newConfigFile = configFile.Load("C:\RunTimeConfig.yaml")
+
+
+let ipAddress = "120.0.0.1"
+let port = 8083
 
 Target "Run" (fun _ ->
     printfn "IPAddres received from config file %s" ipAddress

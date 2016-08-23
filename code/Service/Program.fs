@@ -11,14 +11,17 @@ open FSharp.Configuration
 // Get IP Address and port no. from Config.Yaml
 
 
-type Config = YamlConfig<"\\config.yaml">
+// type Config = YamlConfig<"\\config.yaml">
 
-let configFile = Config ()
+// let configFile = Config ()
 
-let newConfigFile = configFile.Load("C:\RunTimeConfig.yaml")
+// let newConfigFile = configFile.Load("C:\RunTimeConfig.yaml")
 
-let ipAddress = configFile.Suave.Http.IP
-let portConfig = configFile.Suave.Http.Port
+// let ipAddress = configFile.Suave.Http.IP
+// let portConfig = configFile.Suave.Http.Port
+
+let ipAddress = "127.0.0.1"
+let portConfig = 8083
 
 let rec findPort port =
   let portIsTaken =
