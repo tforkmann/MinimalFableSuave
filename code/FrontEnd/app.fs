@@ -2,7 +2,7 @@ module MinimalFableSuave.App
 
 open System
 open Fable.Core
-open FrontEnd.Pages.Fabletest
+open FrontEnd.Pages.Testpage
 open Fable.Import
 open Fable.Import.Browser
 open Fable.Helpers.Virtualdom

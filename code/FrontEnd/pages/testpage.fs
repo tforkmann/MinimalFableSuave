@@ -1,4 +1,4 @@
-﻿module MinimalFableSuave.FrontEnd.Pages.Fabletest
+﻿module MinimalFableSuave.FrontEnd.Pages.Testpage
 
 open System
 open Fable.Core
