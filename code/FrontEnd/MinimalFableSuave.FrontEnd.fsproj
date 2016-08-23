@@ -94,6 +94,7 @@
     </Compile>
     <Compile Include="common\domain.fs" />
     <Compile Include="pages\fabletest.fs" />
+    <Compile Include="app.fs" />
     <None Include="templates\fabletest.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

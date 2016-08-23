@@ -29,3 +29,10 @@ let niceDate (dt:DateTime) =
 let lastyear (dt:DateTime) = sprintf "%d001 " (DateTime.Now.AddYears(-1).Year)
 
 let thisyear (dt:DateTime) = sprintf "%d001 " (DateTime.Now.Year)
+
+// Model shared between server and client
+type Comment = {
+    id: DateTime option
+    author: string
+    text: string
+}

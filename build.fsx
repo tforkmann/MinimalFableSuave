@@ -70,7 +70,7 @@ let node command args workingDir =
       info.Arguments <- args) TimeSpan.MaxValue |> ignore } |> Async.Start
 
 Target "fable" (fun _ ->
-  __SOURCE_DIRECTORY__ </> "code" </> "FrontEnd" |> npm "install" []
+  __SOURCE_DIRECTORY__ </> "code" </> "FrontEnd" |> npm "install -g" []
   __SOURCE_DIRECTORY__ </> "code" </> "FrontEnd" |> node "node_modules/fable-compiler" ["-w"]
 )
 
@@ -116,7 +116,7 @@ and handleWatcherEvents (e:IO.FileSystemEventArgs) =
 // let newConfigFile = configFile.Load("C:\RunTimeConfig.yaml")
 
 
-let ipAddress = "120.0.0.1"
+let ipAddress = "127.0.0.1"
 let port = 8083
 
 Target "Run" (fun _ ->

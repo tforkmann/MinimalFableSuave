@@ -4,6 +4,7 @@ open System
 open System.IO
 open System.Net
 open MinimalFableSuave
+open MinimalFableSuave.BackEnd.Filters
 open MinimalFableSuave.BackEnd.Sqldata
 open MinimalFableSuave.BackEnd.Utils
 open MinimalFableSuave.BackEnd.Db
@@ -22,14 +23,14 @@ open System.Xml.Linq
 
 // Suave
 open Suave
-open Suave.Operators
-open Suave.Filters
-open Suave.Successful
-open Suave.Web
 open Suave.Http
 open Suave.RequestErrors
 open Suave.Embedded
 open Suave.Logging
+open Suave.Successful      // for OK-result
+open Suave.Web             // for config
+open Suave.Filters
+open Suave.Operators
 open Suave.Files
 
 //Logary
@@ -45,24 +46,27 @@ open System.DirectoryServices
 
 // FSharp Formatting
 open FSharp.Formatting
+
 // -------------------------------------------------------------------------------------------------
 // Server entry-point and routing
 // -------------------------------------------------------------------------------------------------
-// TODO: This should be removed/fixed (see issue #4)
-let browseStaticFile file ctx = async {
-  //let actualFile = Path.Combine(ctx.runtime.homeDirectory, "web", file)
-  let actualFile = Path.Combine("web", file) //ctx.runtime.homeDirectory
-  let mime = Suave.Writers.defaultMimeTypesMap(Path.GetExtension(actualFile))
-  let setMime =
-    match mime with
-    | None -> fun c -> async { return None }
-    | Some mime -> Suave.Writers.setMimeType mime.name
-  return! ctx |> ( setMime >=> Successful.ok(File.ReadAllBytes actualFile) ) }
 
-let browseStaticFiles ctx = async {
-  let local = ctx.request.url.PathAndQuery
-  let file = if local = "/" then "index.html" else local.Substring(1)
-  return! browseStaticFile file ctx }
+
+open System
+
+let comments = [
+    { Comment.id = Some DateTime.Now ; author = "jimmy" ; text = "hello"}
+    ]
+
+let json = Suave.Json.toJson comments
+
+let noCache =
+  Writers.setHeader "Cache-Control" "no-cache, no-store, must-revalidate"
+  >=> Writers.setHeader "Pragma" "no-cache"
+  >=> Writers.setHeader "Expires" "0"
+
+let templatesRoot = Path.Combine(__SOURCE_DIRECTORY__, "FrontEnd","templates")
+let clientRoot = Path.Combine(__SOURCE_DIRECTORY__, "FrontEnd", "out", "pages")
 
 // Configure DotLiquid templates & register filters (in 'filters.fs')
 [ for t in System.Reflection.Assembly.GetExecutingAssembly().GetTypes() do
@@ -72,17 +76,29 @@ let browseStaticFiles ctx = async {
 
 let templatepath = Path.Combine(@"..\release\templates") 
 
-DotLiquid.setTemplatesDir (templatepath) 
+DotLiquid.setTemplatesDir templatepath
 
-// Handles routing for the server
-let app =
-  choose
-    [ 
-      path "/"  >=> delay (fun () -> DotLiquid.page "fabletest.html" ())
-      browseStaticFiles]     
+/// Handles routing for the server
+let app : WebPart =         
+    choose [
+        // REST API for sharing model betweeen server and client
+        GET >=> path "/api/comments" >=> OK @"[{""id"" : 1388534400000, ""author"" : ""jimmy"", ""text"" : ""hello""}]"
+    
+        // Serving the generated JS and source maps
+        path "/out/client.js" >=> noCache >=> Files.browseFile clientRoot (Path.Combine("out", "fabletest.js"))
+        path "/out/client.js.map" >=> noCache >=> Files.browseFile clientRoot (Path.Combine("out", "fabletest.js.map"))
+        pathScan "/node_modules/%s.js" (sprintf "/node_modules/%s.js" >> Files.browseFile clientRoot)
+        Files.browseHome
+        Files.browseFileHome "./views/index.html"
 
-open Logary.Suave
+         // Serving index and other static files
+        path "/" >=> Files.browseFile templatesRoot "index.html"
+        Files.browse templatesRoot
+        // Catches RequestErrors
+        RequestErrors.NOT_FOUND "Found no handlers."
+    ]  
 
+/// Using LogaryManager to generate an SuaveReport
 let logary =
     let path = Path.Combine(@"..\release\")
     withLogaryManager "Logary.Services.SuaveReporter" (
@@ -99,7 +115,7 @@ let logary =
         withRules [
             Rule.createForTarget "filelogger"
         ]
-    ) |> Hopac.TopLevel.run
+    ) |> Hopac.Hopac.run
    
 let config cancellationToken ipAddress port = 
     { defaultConfig with

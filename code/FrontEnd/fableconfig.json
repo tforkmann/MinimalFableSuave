@@ -2,7 +2,7 @@
     "module": "amd",
     "sourceMaps": true,
     "projFile": "./MinimalFableSuave.FrontEnd.fsproj",
-    "outDir": "out",
+    "outDir": "web/content",
     "scripts": {
         "prebuild": "npm install",
         "postbuild": "node ./node_modules/webpack/bin/webpack"

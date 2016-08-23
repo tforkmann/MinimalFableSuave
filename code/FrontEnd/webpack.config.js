@@ -3,7 +3,7 @@ var webpack = require("webpack");
 
 var cfg = {
   devtool: "source-map",
-  entry: "./out/pages/fabletest.js",
+  entry: "./web/content/app.js",
   output: {
     path: "./web/content",
     filename: "bundle.js"
