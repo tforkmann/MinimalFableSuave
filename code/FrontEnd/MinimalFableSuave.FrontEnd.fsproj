@@ -95,7 +95,7 @@
     <Compile Include="common\domain.fs" />
     <Compile Include="pages\testpage.fs" />
     <Compile Include="app.fs" />
-    <None Include="templates\fabletest.html">
+    <None Include="templates\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="web\lib\bootstrap.min.css">
