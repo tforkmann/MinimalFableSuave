@@ -17,3 +17,5 @@ code/MinimalFableSuave.Service/obj
 .vs/MinimalFableSuave.WebSite/v14/.suo
 code/MinimalFableSuave.Service/obj/
 code/WebSite/obj/
+.vs
+.vscode
