@@ -1,4 +1,4 @@
-define(["exports", "fable-core", "./../fable_external/Fable.Helpers.Virtualdom-1290096282"], function (exports, _fableCore, _FableHelpers) {
+define(["exports", "fable-core", "./../fable_external/Fable.Helpers.Virtualdom-1054928770"], function (exports, _fableCore, _FableHelpers) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
