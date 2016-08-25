@@ -65,8 +65,9 @@ let noCache =
   >=> Writers.setHeader "Pragma" "no-cache"
   >=> Writers.setHeader "Expires" "0"
 
-let templatesRoot = Path.Combine(__SOURCE_DIRECTORY__, "FrontEnd","templates")
-let clientRoot = Path.Combine(__SOURCE_DIRECTORY__, "FrontEnd", "out", "pages")
+let webRoot = Path.GetFullPath(Path.Combine(@"..\Release\", "templates"))
+let templatesRoot =Path.Combine(@"..\Release\", "templates")
+let clientRoot = Path.GetFullPath(Path.Combine(@"..\Release\", "web"))
 
 // Configure DotLiquid templates & register filters (in 'filters.fs')
 [ for t in System.Reflection.Assembly.GetExecutingAssembly().GetTypes() do
@@ -74,9 +75,9 @@ let clientRoot = Path.Combine(__SOURCE_DIRECTORY__, "FrontEnd", "out", "pages")
 |> Seq.last
 |> DotLiquid.registerFiltersByType
 
-let templatepath = Path.Combine(@"..\release\templates") 
+DotLiquid.setTemplatesDir templatesRoot
 
-DotLiquid.setTemplatesDir templatepath
+printfn "Path: %s" webRoot
 
 /// Handles routing for the server
 let app : WebPart =         
@@ -84,16 +85,25 @@ let app : WebPart =
         // REST API for sharing model betweeen server and client
         GET >=> path "/api/comments" >=> OK @"[{""id"" : 1388534400000, ""author"" : ""jimmy"", ""text"" : ""hello""}]"
     
-        // Serving the generated JS and source maps
-        path "/out/client.js" >=> noCache >=> Files.browseFile clientRoot (Path.Combine("out", "fabletest.js"))
-        path "/out/client.js.map" >=> noCache >=> Files.browseFile clientRoot (Path.Combine("out", "fabletest.js.map"))
+        // Serving the generated CSS,JS and source maps
+        path "/lib/jquery.js" >=> Files.browseFile clientRoot (Path.Combine("lib", "jquery.js"))
+        path "/lib/chosen.jquery.min.js" >=> Files.browseFile clientRoot (Path.Combine("lib", "/chosen.jquery.min"))
+        path "/lib/bootstrap.min.css" >=> Files.browseFile clientRoot (Path.Combine("lib", "bootstrap.min.css"))
+        path "/lib/jquerysearchable.min.js" >=> Files.browseFile clientRoot (Path.Combine("lib", "jquerysearchable.min.js"))
+        path "/content/bundle.js" >=> Files.browseFile clientRoot (Path.Combine("content", "bundle.js"))
+        path "/content/chosen.css" >=> Files.browseFile clientRoot (Path.Combine("content","chosen.css"))
+        path "/content/multiselect.css" >=> Files.browseFile clientRoot (Path.Combine("content","multiselect.css"))
+        path "/content/multiselect.js" >=> Files.browseFile clientRoot (Path.Combine("content","multiselect.js"))
+        path "/content/search.js" >=> Files.browseFile clientRoot (Path.Combine("content","search.js"))
+        path "/content/style.css" >=> Files.browseFile clientRoot (Path.Combine("content","style.css"))
+        path "/img/fsharplogo.png" >=> Files.browseFile clientRoot (Path.Combine("img", "fsharpLogo.png"))
+        path "/content/testpage.js" >=> Files.browseFile clientRoot (Path.Combine("content","pages","testpage.js"))
+        path "/content/testpage.js.map" >=> Files.browseFile clientRoot (Path.Combine("content","pages", "testpage.js.map"))
         pathScan "/node_modules/%s.js" (sprintf "/node_modules/%s.js" >> Files.browseFile clientRoot)
-        Files.browseHome
-        Files.browseFileHome "./views/index.html"
 
          // Serving index and other static files
-        path "/" >=> Files.browseFile templatesRoot "index.html"
-        Files.browse templatesRoot
+        path "/" >=> Files.browseFile webRoot "page.html"
+        Files.browse webRoot
         // Catches RequestErrors
         RequestErrors.NOT_FOUND "Found no handlers."
     ]  
