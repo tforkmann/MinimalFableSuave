@@ -3,10 +3,13 @@ var webpack = require("webpack");
 
 var cfg = {
   devtool: "source-map",
-  entry: "./web/content/app.js",
+  entry: {
+    app: "./web/content/app.js",
+    testpage: "./web/content/pages/testpage.js"
+  },
   output: {
     path: "./web/content",
-    filename: "bundle.js"
+    filename: "[name].bundle.js"
   },
   module: {
     preLoaders: [
