@@ -71,7 +71,7 @@ let node command args workingDir =
 
 Target "fable" (fun _ ->
   __SOURCE_DIRECTORY__ </> "code" </> "FrontEnd" |> npm "install -g" []
-  __SOURCE_DIRECTORY__ </> "code" </> "FrontEnd" |> node "node_modules/fable-compiler" ["-w"]
+  __SOURCE_DIRECTORY__ </> "code" </> "FrontEnd" |> node "node_modules/fable-compiler" ["--verbose"]
 )
 
 

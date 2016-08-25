@@ -3,8 +3,6 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" /> 
-    {% block head %} 
-    {% endblock %}
     <!-- Standard scripts and stylesheet imports -->
     <script src="/lib/jquery.js"></script>
     <link href="/lib/bootstrap.min.css" rel="stylesheet">
@@ -19,9 +17,27 @@
     <script src="/content/bundle.js"></script>
     <script src="/content/multiselect.js"></script>
     <!-- Standard page design and scripts -->
-    {% block customPageScripts %}
-    {% endblock %}
     <link href="/favicon.ico" rel="icon"/>
+    <style>
+			input { width: 15px }
+			.button { 
+				background-color: #4CAF50; /* Green */
+				border: none;
+				color: white;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+    			font-size: 16px; }
+			button {
+				-webkit-transition-duration: 0.4s; /* Safari */
+				transition-duration: 0.4s;
+			}
+			button:hover {
+				background-color: #4CAF50; /* Green */
+				color: white;
+			}				
+		</style>
 </head>
 <body>
     <!-- Navigation -->
@@ -32,12 +48,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>j
+            </button>
             <a class="navbar-brand" href="/">EnergyDashboard</a>
         </div>
         <!-- /.navbar-header -->
         <div class="navbar-collapse collapse" id="navbar">
-            <a href="#"><img src="/img/fsharplogo.png" height="42" width="42"></a>
+            <a href="#"><img src="/img/fsharpLogo.png" height="42" width="42"></a>
             <ul class="nav navbar-nav navbar-right">
             <li>
                 <a href="/test/">
@@ -72,7 +88,7 @@
         </div>
     </nav>
     <!-- /.navigation -->
-            <div class="row">
+        <div class="row">
             <div class="col-sm-3 col-md-2">
                 <div class="panel-group" id="accordion">
                     <div class="panel panel-default">
@@ -116,7 +132,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class="fa fa-leaf"></span><a href="/Test2//">DashboardTest2</a>
+                                            <span class="fa fa-leaf"></span><a href="/Test2/">DashboardTest2</a>
                                         </td>
                                     </tr>
                                 </table>
@@ -125,24 +141,14 @@
                     </div>
                     </div>
                 </div>
+                <div class="col-sm-9 col-md-9">
+                    <div class="row">
+                        <div id="todoapp" class="todoapp"></div>
+                        <script src="/content/bundle.js"></script>  
+                    </div>  
+                </div>
             </div>
-        <div class="col-sm-9 col-md-9">
-            <!-- Header -->
-            <div class="row">
-            <!-- Title -->
-                {% block pageHeader %} {% endblock %}
-            </div>
-            
-            <!-- /.header -->
-            <!-- Content -->
-            <div class="row">
-            <!-- /.Content -->
-                {% block content %} {% endblock %}
-            </div>  
-            <!-- /.Content -->     
-        </div>
-    </div>
-        
+
 </body>
 
 </html>

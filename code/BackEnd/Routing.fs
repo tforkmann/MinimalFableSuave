@@ -86,20 +86,13 @@ let app : WebPart =
         GET >=> path "/api/comments" >=> OK @"[{""id"" : 1388534400000, ""author"" : ""jimmy"", ""text"" : ""hello""}]"
     
         // Serving the generated CSS,JS and source maps
-        path "/lib/jquery.js" >=> Files.browseFile clientRoot (Path.Combine("lib", "jquery.js"))
-        path "/lib/chosen.jquery.min.js" >=> Files.browseFile clientRoot (Path.Combine("lib", "/chosen.jquery.min"))
-        path "/lib/bootstrap.min.css" >=> Files.browseFile clientRoot (Path.Combine("lib", "bootstrap.min.css"))
-        path "/lib/jquerysearchable.min.js" >=> Files.browseFile clientRoot (Path.Combine("lib", "jquerysearchable.min.js"))
-        path "/content/bundle.js" >=> Files.browseFile clientRoot (Path.Combine("content", "bundle.js"))
-        path "/content/chosen.css" >=> Files.browseFile clientRoot (Path.Combine("content","chosen.css"))
-        path "/content/multiselect.css" >=> Files.browseFile clientRoot (Path.Combine("content","multiselect.css"))
-        path "/content/multiselect.js" >=> Files.browseFile clientRoot (Path.Combine("content","multiselect.js"))
-        path "/content/search.js" >=> Files.browseFile clientRoot (Path.Combine("content","search.js"))
-        path "/content/style.css" >=> Files.browseFile clientRoot (Path.Combine("content","style.css"))
-        path "/img/fsharplogo.png" >=> Files.browseFile clientRoot (Path.Combine("img", "fsharpLogo.png"))
-        path "/content/testpage.js" >=> Files.browseFile clientRoot (Path.Combine("content","pages","testpage.js"))
-        path "/content/testpage.js.map" >=> Files.browseFile clientRoot (Path.Combine("content","pages", "testpage.js.map"))
         pathScan "/node_modules/%s.js" (sprintf "/node_modules/%s.js" >> Files.browseFile clientRoot)
+        pathScan "/lib/%s.css" (sprintf "/lib/%s.css" >> Files.browseFile clientRoot)
+        pathScan "/lib/%s.js" (sprintf "/lib/%s.js" >> Files.browseFile clientRoot)
+        pathScan "/img/%s.png" (sprintf "/img/%s.png" >> Files.browseFile clientRoot)
+        pathScan "/content/%s.js" (sprintf "/content/%s.js" >> Files.browseFile clientRoot)
+        pathScan "/content/%s.css" (sprintf "/content/%s.css" >> Files.browseFile clientRoot)
+        pathScan "/node_modules/%s.css" (sprintf "/node_modules/%s.css" >> Files.browseFile clientRoot)
 
          // Serving index and other static files
         path "/" >=> Files.browseFile webRoot "page.html"
