@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-framework="react">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" /> 
+    {% block head %} 
+    {% endblock %}
+    <!-- Standard scripts and stylesheet imports -->
+    <script src="/lib/jquery.js"></script>
+    <link href="/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/content/style.css" rel="stylesheet"/>
+    <link href="/content/multiselect.css" rel="stylesheet">
+    <link href="/lib/chosen.css" rel="stylesheet">
+    <script src="/lib/bootstrap.min.js"></script>
+    <script src="/lib/jquerysearchable.min.js"></script>
+    <script src="/lib/chosen.jquery.min.js"></script> 
+    <script src="/content/search.js"></script>
+    <script src="/content/bundle.js"></script>
+    <script src="/content/multiselect.js"></script>
+    <!-- Standard page design and scripts -->
+    {% block customPageScripts %}
+    {% endblock %}
+    <link href="/favicon.ico" rel="icon"/>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>j
+            <a class="navbar-brand" href="/">EnergyDashboard</a>
+        </div>
+        <!-- /.navbar-header -->
+        <div class="navbar-collapse collapse" id="navbar">
+            <a href="#"><img src="/img/fsharplogo.png" height="42" width="42"></a>
+            <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="/test/">
+                    <i class="fa fa-fw fa-tachometer"></i> Test
+                </a>
+            </li>
+            <li>
+                <a href="/Test2/">
+                    <i class="fa fa-file fa-pie-chart"></i> Test2
+                </a>
+            </li>
+            <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Username <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="signoff"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+               </li>
+            </ul>
+        <!-- /.navbar-header -->
+        </div>
+    </nav>
+    <!-- /.navigation -->
+            <div class="row">
+            <div class="col-sm-3 col-md-2">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="fa fa-home fa-2x">
+                                </span>DashboardTest</a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            <span class="fa fa-fw fa-tachometer"></span><a href="/Test1/">Dashboard</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="fa fa-fw fa-tachometer"></span><a href="/Test2/">Dashboard 2</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="fa fa-leaf fa-2x">
+                                </span>DashboardTest2</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            <span class="fa fa-leaf"></span><a href="/Test1/">DashboardTest1</a> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="fa fa-leaf"></span><a href="/Test2//">DashboardTest2</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        <div class="col-sm-9 col-md-9">
+            <!-- Header -->
+            <div class="row">
+            <!-- Title -->
+                {% block pageHeader %} {% endblock %}
+            </div>
+            
+            <!-- /.header -->
+            <!-- Content -->
+            <div class="row">
+            <!-- /.Content -->
+                {% block content %} {% endblock %}
+            </div>  
+            <!-- /.Content -->     
+        </div>
+    </div>
+        
+</body>
+
+</html>

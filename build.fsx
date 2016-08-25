@@ -21,9 +21,9 @@ let build() =
 
 Target "deploy" (fun _ ->
   let sourceDirectoryNodeModules = __SOURCE_DIRECTORY__ @@ "code/FrontEnd/node_modules"
-  let sourceDirectoryContent = __SOURCE_DIRECTORY__ @@ "code/FrontEnd/web/content"
+  let sourceDirectoryContent = __SOURCE_DIRECTORY__ @@ "code/FrontEnd/web/"
   let binDirectoryNodeModule = __SOURCE_DIRECTORY__ @@ "bin/Release/web/node_modules"
-  let binDirectoryContent = __SOURCE_DIRECTORY__ @@ "bin/Release/web/content"
+  let binDirectoryContent = __SOURCE_DIRECTORY__ @@ "bin/Release/web/"
   CleanDir binDirectoryNodeModule
   CleanDir binDirectoryContent
   CopyRecursive sourceDirectoryNodeModules binDirectoryNodeModule false |> ignore
