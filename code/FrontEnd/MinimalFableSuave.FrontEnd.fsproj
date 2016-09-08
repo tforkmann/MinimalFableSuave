@@ -65,8 +65,8 @@
       <Link>Fable.Helpers.Virtualdom.fs</Link>
     </Compile>
     <Compile Include="common/domain.fs" />
-    <Compile Include="app.fs" />
     <Compile Include="pages/testpage.fs" />
+    <Compile Include="app.fs" />
     <None Include="templates/page.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
