@@ -3,72 +3,116 @@
 open System
 open Fable.Core
 open Fable.Core.JsInterop
-open Fable.Import
 open Fable.Import.Browser
-open Fable.Helpers.Virtualdom
-open Fable.Helpers.Virtualdom.App
-open Fable.Helpers.Virtualdom.Html
+open Fable.Arch
+open Fable.Arch.App
+open Fable.Arch.Html
 
-module Clock =
+/// Helpers for working with input element from VirtualDom
+let inline onInput x = onEvent "oninput" (fun e -> x (unbox e?target?value))
 
-    /// Make sure that number have a minimal representation of 2 digits
-    let normalizeNumber x =
-        if x < 10 then
-            sprintf "0%i" x
-        else
-            string x
+/// Used to make a fake ajax calls. It emulates a server which return the given input uppercased after 1.5 seconds.
+let fakeAjax cb (data: string) =
+  window.setTimeout((fun _ ->
+    cb (data.ToUpper())
+  )
+  , 1500.) |> ignore
 
-    type Action =
-        | Tick of DateTime
+/// DU used to discriminate the State of the request
+type Status =
+  | None
+  | Pending
+  | Done
 
-    /// A really simple type to Store our ModelChanged
-    type Model =
-        { Time: string      // Time: HH:mm:ss
-          Date: string }    // Date: YYYY/MM/DD
+// Model
+type Model =
+  { InputValue: string
+    ServerResponse: string
+    Status: Status
+  }
 
-        /// Static member giving back an init Model
-        static member init =
-            { Time = "00:00:00"
-              Date = "1970/01/01" }
+  static member Init =
+    { InputValue = ""
+      ServerResponse = ""
+      Status = None
+    }
 
-    /// Handle all the update of our Application
-    let update model action =
-        let model', action' =
-            match action with
-            /// Tick are push by the producer
-            | Tick datetime ->
-                // Normalize the day and month to ensure a 2 digit representation
-                let day = datetime.Day |> normalizeNumber
-                let month = datetime.Month |> normalizeNumber
-                // Create our date string
-                let date = sprintf "%i/%s/%s" datetime.Year month day
-                { model with
-                    Time = String.Format("{0:HH:mm:ss}", datetime)
-                    Date = date }, []
-        model', action'
+type Actions =
+  | NoOp
+  | ChangeInput of string
+  | SendEcho
+  | ServerResponse of string
+  | SetStatus of Status
 
-    /// Our application view
-    let view model =
-        div
-            []
-            [ text model.Date
-              br []
-              text model.Time]
+// Update
+let update model action =
+  let model' =
+    match action with
+    // On input change with update the model value
+    | ChangeInput str ->
+      { model with InputValue = str }
+    // When we got back a server response, we update the value of the server and set the state to Done
+    | ServerResponse str ->
+      { model with
+          ServerResponse = str
+          Status = Done }
+    // Set the status in the model
+    | SetStatus newStatus ->
+      { model with Status = newStatus }
+    | _ -> model
 
-    /// Producer used to send the current Time every second
-    let tickProducer push =
-        window.setInterval((fun _ ->
-            push(Tick DateTime.Now)
-            null
-        ),
-            1000) |> ignore
-        // Force the first to push to have immediate effect
-        // If we don't do that there is one second before the first push
-        // and the view is rendered with the Model.init values
-        push(Tick DateTime.Now)
+  // Code used to support delayed code like ajax for example
+  let delayedCall h =
+    match action with
+    | SendEcho ->
+      // Send a fake ajax
+      // First is a callback to execute when done
+      // Second is the data to send
+      fakeAjax
+        (fun data ->
+          h (ServerResponse data)
+        )
+        model.InputValue
+      // We just sent an ajax request so make the state pending in the model
+      h (SetStatus Pending)
+    | _ -> ()
 
-    /// Create and run our application
-    createApp Model.init view update
-    |> withStartNodeSelector "#test"
-    |> withProducer tickProducer    // Attach our producer to the app
-    |> start renderer
+  // We return the model, and a list of Actions to execute
+  model', delayedCall |> toActionList
+
+// View
+let view model =
+  // Choose what we want to display on output
+  let infoText =
+    match model.Status with
+    | None -> text ""
+    | Pending -> text "Waiting Server response"
+    | Done -> text (sprintf "The server response is: %s" model.ServerResponse)
+
+  div
+    []
+    [
+      label
+        []
+        [text "Enter a sentence: "]
+      br []
+      textarea
+        [
+            onInput ChangeInput
+            property "value" model.InputValue
+        ]
+        []
+      br []
+      button
+        [ onMouseClick (fun _ -> SendEcho) ]
+        [ text "Uppercase by server" ]
+      br []
+      span
+        []
+        [ infoText ]
+    ]
+
+/// Create our application
+createApp Model.Init view update Virtualdom.renderer
+|> withStartNodeSelector "#echo"
+|> start

@@ -4,11 +4,10 @@ open System
 open Fable.Core
 open Fable.Core.JsInterop
 open FrontEnd.Pages.Testpage
-open Fable.Import
 open Fable.Import.Browser
-open Fable.Helpers.Virtualdom
-open Fable.Helpers.Virtualdom.App
-open Fable.Helpers.Virtualdom.Html
+open Fable.Arch
+open Fable.Arch.App
+open Fable.Arch.Html
 
 module SudokuSolver =
     open System.Collections.Generic
@@ -106,9 +105,9 @@ let initModel =
              [0; 5; 0;  0; 0; 0;  0; 7; 4]]
               |> toSudoku
 
-open Fable.Helpers.Virtualdom
-open Fable.Helpers.Virtualdom.App
-open Fable.Helpers.Virtualdom.Html
+open Fable.Arch
+open Fable.Arch.App
+open Fable.Arch.Html
 
 let inline onInput x = onEvent "oninput" (fun e -> x (unbox e?target?value))
 let maxlength (i:int) = attribute "maxlength" (string i) 
@@ -146,7 +145,7 @@ let view (model:Sudoku) =
         ]
 
 open Fable.Import.Browser
-createApp initModel view update
+createApp initModel view update Virtualdom.renderer
 |> withStartNodeSelector "#todoapp"
-|> withSubscriber "allseeingeye" (fun x -> window.console.log("Something happened: ", x))
-|> start renderer 
+|> withSubscriber (fun x -> window.console.log("Something happened: ", x))
+|> start
